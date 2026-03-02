@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>For Sumaiya Ahmed Shimu 🌷</title>
+<style>
+body{margin:0;overflow:hidden;background:black;font-family:sans-serif;color:white;text-align:center;}
+#stars{position:absolute;width:100%;height:100%;background:black url('assets/stars.png') repeat;z-index:-2;filter:brightness(1.1);}
+#intro{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:bold;color:white;animation:fadeOut 3s forwards 2s;z-index:1000;}
+@keyframes fadeOut{0%{opacity:1;}100%{opacity:0;display:none;}}
+
+#rocket{position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);width:100px;z-index:5;}
+#smoke{position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);width:120px;opacity:0.6;z-index:4;pointer-events:none;}
+@keyframes rocketUp{0%{bottom:-150px;}100%{bottom:60%;}}
+#rocket.rocketAnim{animation:rocketUp 5s forwards;}
+#smoke.smokeAnim{animation:rocketUp 5s forwards;}
+
+#letter{position:absolute;top:-500px;left:50%;transform:translateX(-50%);width:400px;padding:40px;border-radius:30px;box-shadow:0 0 80px rgba(255,75,145,0.9);text-align:center;background:linear-gradient(135deg,#ff6a88,#ff99ac);display:none;z-index:10;}
+#letter img{width:100%;border-radius:15px;box-shadow:0 0 60px rgba(255,75,145,0.8);}
+#letter button{padding:14px 35px;border:none;border-radius:40px;font-size:18px;background:white;color:#ff4b91;cursor:pointer;transition:0.3s;}
+#letter button:hover{transform:scale(1.1);}
+
+#messageContainer{display:none;position:absolute;top:20%;left:50%;transform:translateX(-50%);width:70%;height:60%;overflow:hidden;}
+#message{color:white;font-size:22px;line-height:1.8;text-align:left;white-space:pre-wrap;position:absolute;bottom:0;}
+#glowName{font-size:32px;color:#ff4b91;text-shadow:0 0 15px #ff4b91,0 0 25px #ff4b91,0 0 35px #ff4b91;animation:glow 1.5s infinite alternate;}
+@keyframes glow{0%{text-shadow:0 0 10px #ff4b91,0 0 15px #ff4b91,0 0 20px #ff4b91}100%{text-shadow:0 0 25px #ff4b91,0 0 35px #ff4b91,0 0 45px #ff4b91}}
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="intro">Special Surprise for Sumaiya Ahmed Shimu 🌷</div>
+
+<img id="smoke" src="assets/smoke.png">
+<img id="rocket" src="assets/rocket.png">
+
+<div id="letter">
+<h1 id="glowName">For Sumaiya Ahmed Shimu 🌷</h1>
+<p>Open Letter ✨</p>
+<img src="assets/letter.png" alt="Letter">
+<br><br>
+<button onclick="openMessage()">Open Letter</button>
+</div>
+
+<div id="messageContainer">
+  <div id="message"></div>
+</div>
+
+<audio id="music" loop>
+<source src="assets/music.mp3" type="audio/mp3">
+</audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+// Rocket + smoke launch
+setTimeout(()=>{
+  document.getElementById("rocket").classList.add("rocketAnim");
+  document.getElementById("smoke").classList.add("smokeAnim");
+},100);
+
+// Show letter after rocket
+setTimeout(()=>{
+  document.getElementById("rocket").style.display="none";
+  document.getElementById("smoke").style.display="none";
+  let letter=document.getElementById("letter");
+  letter.style.display="block";
+  letter.animate([{top:'-500px'},{top:'35%'}],{duration:2500,fill:'forwards'});
+},5500);
+
+// Typing message scroll effect
+let text = `প্রিয় Sumaiya Ahmed Shimu 🌷  
+
+আজকের দিনটা তোমার জীবনের একটি বিশেষ মুহূর্ত মনে করিয়ে দেয়।  
+২৮ ফেব্রুয়ারি ২০২১ — সেই দিন, যখন তুমি জীবনের একটি নতুন ধাপে প্রবেশ করেছিলে।  
+
+সময়ের সঙ্গে আমরা অনেক কিছু শিখি।  
+নিজের শরীর ও মনকে বোঝা, নিজের যত্ন নেওয়া — সবই শেখা হয় ধীরে ধীরে।  
+
+আজ শুধু একটা ছোট্ট কথা বলতে চাই —  
+নিজের প্রতি যত্নশীল হও।  
+নিজেকে ভালোবাসো।  
+যদি কখনো মন খারাপ বা ক্লান্তি লাগে,  
+নিজেকে সময় দিও।  
+
+তুমি সত্যিই শক্ত একজন মানুষ।  
+তোমার হাসি চারপাশ উজ্জ্বল করে।  
+তুমি সুন্দর, স্পেশাল, অদ্ভুতভাবে অনন্য।  
+
+জীবনে সামনে অনেক সুন্দর সময় আছে,  
+অনেক স্বপ্ন, অনেক নতুন গল্প অপেক্ষা করছে।  
+
+আজকের এই ছোট্ট surprise শুধু তোমাকে মনে করিয়ে দেওয়ার জন্য —  
+তুমি ভালো আছো, তুমি গুরুত্বপূর্ণ,  
+আর কেউ আছে যিনি সত্যিই তোমার যত্ন নেয়। ❤️  
+
+শুভেচ্ছাসহ,  
+Shafiul Mujnabin  
+
+`;
+
+let i=0;
+const speed=70;
+function typeMessage(){
+  let container=document.getElementById("messageContainer");
+  let msg=document.getElementById("message");
+  container.style.display="block";
+  function typing(){
+    if(i<text.length){
+      msg.innerHTML+=text.charAt(i);
+      msg.style.bottom="0px"; 
+      msg.scrollIntoView({behavior:'smooth',block:'end'});
+      i++;
+      setTimeout(typing,speed);
+    }
+  }
+  typing();
+}
+
+// Open letter
+function openMessage(){
+  document.getElementById("letter").style.display="none";
+  let music=document.getElementById("music");
+  music.play().catch(()=>{document.body.addEventListener('click',()=>music.play());});
+  confetti({particleCount:500,spread:180});
+  typeMessage();
+}
+</script>
+</body>
+</html>
